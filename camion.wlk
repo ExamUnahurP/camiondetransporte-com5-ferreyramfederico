@@ -4,5 +4,6 @@ object camion {
     method descargar(cosa) {cosasDelCamion.remove(cosa)}
     method pesoTotal() = 1000 + self.pesoDeCarga()
     method pesoDeCarga() = cosasDelCamion.sum({c => c.peso()}) 
-    method 
+    method pesosDeCargasPares() = cosasDelCamion.all({c => c.peso().even()})
+    method cosaPesa(peso) = cosasDelCamion.any(c,  => c.peso() == peso) 
 }
