@@ -57,23 +57,27 @@ object contenedorPortuario(){
     method cargar(cosas) {cosasAdentro.add(cosas)}
     method descargar(cosas) {cosasAdentro.remove(cosas)}
     method pesoCosasAdentro() = cosasAdentro.sum({c => c.peso()})
-    method peso(cosas) = 100 + self.cosasAdentro()
-    method nivelPeligrosidad()
-}
-
-object residuosRadioactivos(){
-    var peso = 0
-    var peligrosidad = 200
-    method peso()= return peso
-    method nivelPeligrosidad()=return peligrosidad
-    method cambiarPeso(cant){
-        peso = cant
+    method peso() = 100 + self.pesoCosasAdentro()
+    method nivelMaximo() = cosasAdentro.max(c => c.nivelPeligrosidad())
+    method nivelPeligrosidad() {
+        if(cosasAdentro.isEmpty()){
+            return 0
+        } else {
+            return self.nivelMaximo()
+        }
     }
 }
 
-object embalajeDeSeguridad(cosa){
-    var peso = cosa.peso()
-    var peligrosidad = cosa.nivelPeligrosidad() / 2
-    method peso() = return peso
-    method nivelPeligrosidad() = return peligrosidad
+object residuosRadioactivos{
+    var peso = 0
+    method peso() = peso 
+    method agregarPeso(nuevoPeso) {peso += nuevoPeso}
+    method nivelPeligrosidad() = 200
+
+}
+
+object embalajeDeSeguridad{
+    const embala = []
+    method peso() = embala.sum{c => c.peso()}
+    method nivelPeligrosidad() = embala.sum{c => c.nivelPeligrosidad} / 2
 }
