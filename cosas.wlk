@@ -11,43 +11,36 @@ object bumblebee(){
     method nivelPeligrosidad() = peligrosidad
     method peso() = 800
     method transformarce() {transformadoAuto = not transformadoAuto}
-    method cambiarPeligrosidad()[
+    method cambiarPeligrosidad(){
         if (transformadoAuto){
             peligrosidad = 15
         }else{
             peligrosidad = 30
         }
-    ]
-
-
+    }
 }
 
 object paqueteDeLadrillos(){
-    var peso = 2
-    var peligrosidad = 2
-    method peso() = return peso
-    method nivelPeligrosidad() = return peligrosidad
-    method cambiarPeso(cant){
-        peso = cant*2
-    }
+    var cantidadTotalLadrillos = 1
+    method cantidadDeLadrillos() = cantidadTotalLadrillos
+    method peso() = 2 * cantidadTotalLadrillos
+    method peligrosidad() = 2
 }
+
 
 object arenaAGradel(){
     var peso = 0
-    var peligrosidad = 1
-    method peso()= return peso
-    method nivelPeligrosidad() = return peligrosidad
-    method cambiarPeso(cant){
-        peso = cant
-    }
+    method peso() = peso
+    method cambiarPeso(pesoNuevo) {peso = pesoNuevo}
+    method peligrosidad() = 1
 }
 
 object bateriaAntiaerea(){
     var peso = 200
     var peligrosidad = 0
     var tieneMisiles = false
-    method peso()= return peso
-    method nivelPeligrosidad()= return peligrosidad
+    method peso() =  peso
+    method nivelPeligrosidad() = peligrosidad
     method tieneMisles()[
         if tieneMisiles{
             peligrosidad = 100
@@ -60,14 +53,12 @@ object bateriaAntiaerea(){
 }
 
 object contenedorPortuario(){
-    var peso = 100
-    var peligrosidad = 0
-    method peso() = return peso
-    method nivelPeligrosidad()=return peligrosidad
-    method meterCosaDentro(cosa){
-        peso = peso + cosa.peso()
-        peligrosidad = peligrosidad + cosa.nivelPeligrosidad()
-    }
+    var cosasAdentro = []
+    method cargar(cosas) {cosasAdentro.add(cosas)}
+    method descargar(cosas) {cosasAdentro.remove(cosas)}
+    method pesoCosasAdentro() = cosasAdentro.sum({c => c.peso()})
+    method peso(cosas) = 100 + self.cosasAdentro()
+    method nivelPeligrosidad()
 }
 
 object residuosRadioactivos(){
