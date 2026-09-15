@@ -6,8 +6,9 @@ object camion {
     method pesoDeCarga() = cosasDelCamion.sum({c => c.peso()}) 
     method pesosDeCargasPares() = cosasDelCamion.all({c => c.peso().even()})
     method cosaPesa(peso) = cosasDelCamion.any({c => c.peso() == peso})
-    method cosasPeligrosas() = cosasDelCamion.filter({c => c.esPeligroso()})
-    method primerCosaPeligrosa(nivel) = self.cosasPeligrosas.find({c => c.peligrosidad() == nivel})
-    method supera
-    method superaPeligrosidadDe(cosa) = self.cosasPeligrosas()
+    method primerCosaPeligrosa(nivel) = cosasDelCamion.find({c => c.nivelPeligrosidad() == nivel})
+    method superaNivelDePeligrosidad(nivel) = cosasDelCamion.filter({c => c.nivelPeligrosidad() > nivel})
+    method superaPeligrosidadDe(cosa) = cosasDelCamion.filter({c => c.nivelPeligrosidad() > cosa.nivelPeligrosidad()})
+    method camionExcedidoDePeso() = self.pesoTotal() > 2500
+    method  
 }
