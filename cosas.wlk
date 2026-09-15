@@ -44,5 +44,46 @@ object bateriaAntiaerea(){
     var peso = 200
     var peligrosidad = 0
     var tieneMisiles = false
+    method peso()= return peso
+    method nivelPeligrosidad()= return peligrosidad
+    method tieneMisles()[
+        if tieneMisiles == true{
+            peligrosidad = 100
+            peso = 300
+        }else{
+            peligrosidad = 0
+            peso = 200
+        }
+    ]
+}
 
+object contenedorPortuario(){
+    var peso = 100
+    var peligrosidad = 0
+    method peso() = return peso
+    method nivelPeligrosidad()=return peligrosidad
+    method meterCosaDentro(cosa){
+        peso = peso + cosa.peso()
+        peligrosidad = peligrosidad + cosa.nivelPeligrosidad()
+    }
+}
+
+object residuosRadioactivos(){
+    var peso = 0
+    var peligrosidad = 200
+    method peso()= return peso
+    method nivelPeligrosidad()=return peligrosidad
+    method cambiarPeso(cant){
+        peso = cant
+    }
+}
+
+object embalajeDeSeguridad(cosa){
+    var peso = self.cosaEmbalada.peso()
+    var peligrosidad = self.cosaEmbalada.nivelPeligrosidad() / 2
+    method peso() = return peso
+    method nivelPeligrosidad() = return peligrosidad
+    method cosaEmbalada(cosa){
+        
+    }
 }
