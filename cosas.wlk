@@ -1,23 +1,25 @@
 object kinghtRider {
     var peso = 500
     var peligrosidad = 10
-    method peso() = return peso
-    method nivelPeligrosidad() = return peligrosidad   
+    method peso() = peso
+    method nivelPeligrosidad() = peligrosidad   
 }
 
 object bumblebee(){
-    var peso = 800
     var peligrosidad = 15
-    var comoEsta = false
-    method peso() = return peso
-    method nivelPeligrosidad() = return peligrosidad
+    var transformadoAuto = true
+    method nivelPeligrosidad() = peligrosidad
+    method peso() = 800
+    method transformarce() {transformadoAuto = not transformadoAuto}
     method cambiarPeligrosidad()[
-        if comoEsta == true{
+        if (transformadoAuto){
             peligrosidad = 15
         }else{
             peligrosidad = 30
         }
-    ]    
+    ]
+
+
 }
 
 object paqueteDeLadrillos(){
@@ -47,7 +49,7 @@ object bateriaAntiaerea(){
     method peso()= return peso
     method nivelPeligrosidad()= return peligrosidad
     method tieneMisles()[
-        if tieneMisiles == true{
+        if tieneMisiles{
             peligrosidad = 100
             peso = 300
         }else{
@@ -79,11 +81,8 @@ object residuosRadioactivos(){
 }
 
 object embalajeDeSeguridad(cosa){
-    var peso = self.cosaEmbalada.peso()
-    var peligrosidad = self.cosaEmbalada.nivelPeligrosidad() / 2
+    var peso = cosa.peso()
+    var peligrosidad = cosa.nivelPeligrosidad() / 2
     method peso() = return peso
     method nivelPeligrosidad() = return peligrosidad
-    method cosaEmbalada(cosa){
-        
-    }
 }
