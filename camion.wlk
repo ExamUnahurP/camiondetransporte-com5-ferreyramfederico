@@ -10,5 +10,5 @@ object camion {
     method superaNivelDePeligrosidad(nivel) = cosasDelCamion.filter({c => c.nivelPeligrosidad() > nivel})
     method superaPeligrosidadDe(cosa) = cosasDelCamion.filter({c => c.nivelPeligrosidad() > cosa.nivelPeligrosidad()})
     method camionExcedidoDePeso() = self.pesoTotal() > 2500
-    method  
+    method puedeCircular() = not self.camionExcedidoDePeso() and not self.superaNivelDePeligrosidad() 
 }
