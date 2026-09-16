@@ -80,4 +80,5 @@ object embalajeDeSeguridad {
     const embala = []
     method peso() = embala.sum{c => c.peso()}
     method nivelPeligrosidad() = embala.sum{c => c.nivelPeligrosidad} / 2
+    method cambiarLoQueEnvuelve(cosaNueva) {embala = cosaNueva} 
 }
