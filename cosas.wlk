@@ -5,7 +5,7 @@ object kinghtRider {
     method nivelPeligrosidad() = peligrosidad   
 }
 
-object bumblebee(){
+object bumblebee {
     var peligrosidad = 15
     var transformadoAuto = true
     method nivelPeligrosidad() = peligrosidad
@@ -20,22 +20,23 @@ object bumblebee(){
     }
 }
 
-object paqueteDeLadrillos(){
+object paqueteDeLadrillos {
     var cantidadTotalLadrillos = 1
     method cantidadDeLadrillos() = cantidadTotalLadrillos
+    method cambiarCantidadDeLadrillos(nuevoPeso) { cantidadTotalLadrillos = nuevoPeso}
     method peso() = 2 * cantidadTotalLadrillos
-    method peligrosidad() = 2
+    method nivelPeligrosidad() = 2
 }
 
 
-object arenaAGradel(){
+object arenaAGradel {
     var peso = 0
     method peso() = peso
     method cambiarPeso(pesoNuevo) {peso = pesoNuevo}
-    method peligrosidad() = 1
+    method nivelPeligrosidad() = 1
 }
 
-object bateriaAntiaerea(){
+object bateriaAntiaerea {
     var peso = 200
     var peligrosidad = 0
     var tieneMisiles = false
@@ -52,10 +53,9 @@ object bateriaAntiaerea(){
     ]
 }
 
-object contenedorPortuario(){
+object contenedorPortuario {
     var cosasAdentro = []
-    method cargar(cosas) {cosasAdentro.add(cosas)}
-    method descargar(cosas) {cosasAdentro.remove(cosas)}
+    method cargar(listaDeElementos) {cosasAdentro.addAll(listaDeElementos)}
     method pesoCosasAdentro() = cosasAdentro.sum({c => c.peso()})
     method peso() = 100 + self.pesoCosasAdentro()
     method nivelMaximo() = cosasAdentro.max(c => c.nivelPeligrosidad())
@@ -68,7 +68,7 @@ object contenedorPortuario(){
     }
 }
 
-object residuosRadioactivos{
+object residuosRadioactivos {
     var peso = 0
     method peso() = peso 
     method agregarPeso(nuevoPeso) {peso += nuevoPeso}
@@ -76,7 +76,7 @@ object residuosRadioactivos{
 
 }
 
-object embalajeDeSeguridad{
+object embalajeDeSeguridad {
     const embala = []
     method peso() = embala.sum{c => c.peso()}
     method nivelPeligrosidad() = embala.sum{c => c.nivelPeligrosidad} / 2
